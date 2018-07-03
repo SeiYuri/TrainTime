@@ -12,7 +12,7 @@ $(document).ready(function () {
   firebase.initializeApp(config);
 
   var database = firebase.database();
-  var currentTime = moment().format('MMMM Do YYYY, h:mm:ss a');
+  var currentTime = moment('MMMM Do YYYY, h:mm:ss a');
 
 
   $("#submit-btn").on("click", function () {
@@ -84,11 +84,11 @@ $(document).ready(function () {
       var difference = currentTime.diff(moment(firstTrainStructure), "minutes");
       var remainder = difference % frequency;
       var minutesUntilTrain = frequency - remainder;
-      var nextArrival = moment().add(minUntilTrain, "minutes").format("hh:mm a");
+      var nextArrival = moment().add(minutesUntilTrain, "minutes").format("hh:mm a");
 
       // Add each train's data into the table 
 
-      $("#train-table > tbody").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextArrival + "</td><td>" + minutesUntilTrain + "</td></tr>");
+      $("#trainTable").append("<tr><td>" + trainName + "</td><td>" + destination + "</td><td>" + frequency + "</td><td>" + nextArrival + "</td><td>" + minutesUntilTrain + "</td></tr>");
 
   });
    
